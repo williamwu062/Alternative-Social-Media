@@ -11,7 +11,6 @@ function App() {
   const [findEmail, setFindEmail] = useState('');
   const [findPass, setFindPass] = useState('');
 
-
   const GET = {
     credentials: "include",
     method: "GET",
