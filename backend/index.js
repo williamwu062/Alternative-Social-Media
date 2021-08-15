@@ -28,10 +28,12 @@ app.use(express.json());
 app.post("/api/createUser", (require, response) => {
     const ID = Math.floor((Math.random() * 100000000) + 1);
     const pass = require.body.pass;
-    const Email = require.body.ID;
+    const username = require.body.ID;
+    const school = require.body.school;
+    const rank = require.body.rank;
 
-    const sqlInsert = "INSERT INTO `Users` (`UserID`, `Pass`, `Email`) VALUES (?,?,?)";
-    db.query(sqlInsert, [ID, pass, Email], (err, result) => {
+    const sqlInsert = "INSERT INTO `Users` (`UserID`, `Pass`, `Username`, `School`, `Ranking`) VALUES (?,?,?,?,?)";
+    db.query(sqlInsert, [ID, pass, username, school, rank], (err, result) => {
         if(err){
             console.log(err);
         } else{
