@@ -5,12 +5,21 @@ const mysql = require("mysql");
 const cors = require("cors");
 const fs = require('fs');
 
-var db = mysql.createConnection({
-    host:'localhost',
+let db = mysql.createConnection({
+    host: 'localhost',
+    port: '3306',
     user: 'root',
-    password:'411project',
-    database:'discoveat',
-})
+    password: '411project',
+    database: 'data'
+});
+
+db.connect(function(err) {
+    if (err) {
+      return console.error('error: ' + err.message);
+    }
+  
+    console.log('Connected to the MySQL server.');
+});
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,7 +30,7 @@ app.post("/api/createUser", (require, response) => {
     const pass = require.body.pass;
     const Email = require.body.ID;
 
-    const sqlInsert = "INSERT INTO `Users` (`UserID`, `Password`, `Email`) VALUES (?,?,?)";
+    const sqlInsert = "INSERT INTO `Users` (`UserID`, `Pass`, `Email`) VALUES (?,?,?)";
     db.query(sqlInsert, [ID, pass, Email], (err, result) => {
         if(err){
             console.log(err);
@@ -51,7 +60,7 @@ app.get("/api/getUser/*", (require, response) => {
     });
 });
 
-app.listen(3002, () => {
-    console.log("running on port 3002");
+app.listen(3000, () => {
+    console.log("running on port 3000");
 })
 

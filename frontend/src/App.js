@@ -4,6 +4,7 @@ import Axios from 'axios';
 import {Form, Alert, Col, Row, Button, ListGroup} from 'react-bootstrap';
 
 function App() {
+  console.log('hi');
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
@@ -37,14 +38,14 @@ function App() {
   };
 
   const addUser = (e) => {
-    Axios.post('http://localhost:3002/api/createUser', {
+    Axios.post('http://localhost:3000/api/createUser', {
       ID: email,
       pass: pass
     });
   }
 
   const findUser = (e) => {
-    // Axios.post('http://localhost:3002/api/getUser', {
+    // Axios.post('http://localhost:3306/api/getUser', {
     //   params: {
     //     ID: findID
     //   }
